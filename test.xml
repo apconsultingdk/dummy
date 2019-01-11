@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:fn="http://www.w3.org/2005/xpath-functions">
+	<xsl:output method='xml' version='1.0' encoding='UTF-8' doctype-system="about:legacy-compat" />
+	<xsl:decimal-format name="danish" decimal-separator="," grouping-separator="." />
+	<xsl:strip-space elements="*" />
+	<xsl:include href="components/global.xsl" />
+
+	<!-- VERSION 008 -->
+	<xsl:template match="/">
+		<html>
+			<head>
+				<link href="templates/style/style.css" rel="stylesheet" type="text/css" />
+			</head>
+			<body>
+				<xsl:call-template name="section_Brevhoved" />
+				<xsl:call-template name="global_util_Watermark" />
+
+				<!-- Main content -->
+				<div class="main-content">
+					<!-- SECTION 1 -->
+					<h1>
+						<xsl:value-of select="$bkv_StyrelseNavn" /> stopper din særskilte lønindeholdelse
+					</h1>
+					<div>
+						<p>
+							<xsl:value-of select="$bkv_StyrelseNavn" /> kan oplyse, at vi har stoppet den
+							igangværende særskilte lønindeholdelse, som vi tidligere har truffet afgørelse om i
+							henhold til reglerne i § 10 a i lov om inddrivelse af gæld til det offentlige samt § 14
+							i bekendtgørelse om inddrivelse af gæld til det offentlige.
+						</p>
+						<p>
+							Det betyder, at vi ændrer dit skattekort, så der ikke længere trækkes et beløb i din
+							indkomst til betaling af den gæld, der var omfattet af afgørelsen.
+						</p>
+					</div>
+
+					<!-- SECTION 2 -->
+					<div>
+						<h2>Ændring af trækprocent</h2>
+						<p>
+							Trækprocenten vil normalt blive rettet på dit skattekort inden for 11 dage. Du skal ikke
+							selv gøre noget for at ændre dit skattekort. Hvis der inden ændringen af din trækprocent
+							bliver trukket yderligere et beløb i din indkomst, vil vi udbetale beløbet til din
+							NemKonto.
+						</p>
+
+						<p>
+							Du skal være opmærksom på, at dette brev ikke har betydning for en eventuel igangværende
+							afgørelse om lønindeholdelse i henhold til § 10 i lov om inddrivelse af gæld til det
+							offentlige samt § 13 i bekendtgørelse om inddrivelse af gæld til det offentlige.
+						</p>
+					</div>
+
+					<!-- END SECTION -->
+					<xsl:call-template name="bk_LoveOgRegler_Korrekt" />
+					<xsl:call-template name="bk_HvisDuHarSpørgsmål" />
+					<xsl:call-template name="bk_VenligHilsen" />
+					<!-- ALWAYS LAST, ALWAYS INSIDE .main-content -->
+					<xsl:call-template name="bk_Brevafslutning" />
+				</div>
+			</body>
+		</html>
+	</xsl:template>
+</xsl:stylesheet>
